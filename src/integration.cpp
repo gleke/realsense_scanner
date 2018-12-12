@@ -163,6 +163,7 @@ pcl::ihs::Integration::reconstructMesh (const CloudXYZRGBNormalConstPtr& cloud_d
 
       const float weight = -pt_d_0.normal_z; // weight = -dot (normal, [0; 0; 1])
 
+	  //????
       if (!boost::math::isnan (pt_d_0.x) && weight > min_weight_)
       {
         pt_m_0 = PointIHS (pt_d_0, weight);

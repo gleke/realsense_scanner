@@ -51,12 +51,12 @@
 pcl::ihs::InputDataProcessing::InputDataProcessing ()
   : normal_estimation_ (new NormalEstimation ()),
 
-    x_min_ (-15.f),
-    x_max_ ( 15.f),
-    y_min_ (-15.f),
-    y_max_ ( 15.f),
-    z_min_ ( 10.f),
-    z_max_ ( 50.f),
+    x_min_ (-10.f),
+    x_max_ ( 10.f),
+    y_min_ (-10.f),
+    y_max_ ( 10.f),
+    z_min_ ( 30.f),
+    z_max_ ( 60.f),
 
     h_min_ (3.f),
     h_max_ (55.f),
@@ -69,7 +69,7 @@ pcl::ihs::InputDataProcessing::InputDataProcessing ()
     hsv_enabled_ (true),
 
     size_dilate_ (3),
-    size_erode_  (3)
+    size_erode_  (1)
 {
   // Normal estimation
   normal_estimation_->setNormalEstimationMethod (NormalEstimation::AVERAGE_3D_GRADIENT);
@@ -172,10 +172,6 @@ pcl::ihs::InputDataProcessing::segment (const CloudXYZRGBAConstPtr& cloud_in,
       {
         xyz_mask (r, c) = true;
 
-		pt_out.getVector4fMap() = xyzrgb.getVector4fMap();
-		pt_out.getNormalVector4fMap() = normal.getNormalVector4fMap();
-		pt_out.rgba = xyzrgb.rgba;
-
 		if (!hsv_enabled_) {
 			continue;
 		}
@@ -188,9 +184,6 @@ pcl::ihs::InputDataProcessing::segment (const CloudXYZRGBAConstPtr& cloud_in,
         {
           if (hsv_inverted_) hsv_mask (r, c) = true;
         }
-	  }
-	  else {
-		  pt_out.x = std::numeric_limits <float>::quiet_NaN();
 	  }
     }
   }

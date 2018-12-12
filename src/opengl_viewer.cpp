@@ -582,7 +582,7 @@ pcl::ihs::OpenGLViewer::addMesh (const CloudXYZRGBNormalConstPtr& cloud, const s
   if (this->getMeshIsAdded (id))
     drawn_meshes_ [id] = mesh;
   else
-    drawn_meshes_.insert (std::make_pair (id, mesh));
+	  drawn_meshes_.insert (std::make_pair (id, mesh));
 
   return (true);
 }
@@ -934,7 +934,7 @@ pcl::ihs::OpenGLViewer::drawMeshes ()
         }
         case COL_ONE_COLOR:
         {
-          glColor3f (.7f, .7f, .7f);
+          glColor3f (.3f, .7f, .3f);
           break;
         }
         case COL_VISCONF:
